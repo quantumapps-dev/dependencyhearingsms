@@ -1,45 +1,95 @@
 "use client";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
-import { Users, MessageSquare, FileText, Shield, Clock, Database, Bell, Phone, Calendar, CheckCircle, Activity, Lock } from 'lucide-react';
+import { Button } from "../components/ui/button";
+import { Users, MessageSquare, FileText, Shield, Clock, Database, Bell, Phone, Calendar, CheckCircle, Activity, Lock, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   const features = [
     {
       icon: Users,
-      title: "Case Information Management",
+      title: "Case Management",
       description: "Comprehensive case tracking with docket numbers, hearing dates, and participant details",
-      color: "text-blue-600 dark:text-blue-400"
+      color: "text-blue-600 dark:text-blue-400",
+      href: "/cases"
     },
     {
-      icon: Shield,
-      title: "Participant Role Management",
-      description: "Secure role-based access for judges, attorneys, social workers, and case managers",
-      color: "text-purple-600 dark:text-purple-400"
+      icon: Phone,
+      title: "Contact Management",
+      description: "Parent and guardian contact information with consent tracking",
+      color: "text-green-600 dark:text-green-400",
+      href: "/contacts"
     },
     {
       icon: MessageSquare,
-      title: "Communication Management",
+      title: "Message Scheduling",
       description: "Automated SMS reminders and two-way messaging with parent contacts",
-      color: "text-green-600 dark:text-green-400"
+      color: "text-purple-600 dark:text-purple-400",
+      href: "/messages"
+    },
+    {
+      icon: Bell,
+      title: "Message Inbox",
+      description: "Handle incoming SMS replies with auto-tagging and queue management",
+      color: "text-yellow-600 dark:text-yellow-400",
+      href: "/inbox"
+    },
+    {
+      icon: Activity,
+      title: "Message History",
+      description: "Complete record of all sent and received SMS communications",
+      color: "text-indigo-600 dark:text-indigo-400",
+      href: "/message-history"
+    },
+    {
+      icon: Users,
+      title: "Participant Management",
+      description: "Track all parties involved including children, parents, attorneys, and case workers",
+      color: "text-orange-600 dark:text-orange-400",
+      href: "/participants"
     },
     {
       icon: FileText,
-      title: "Document & Evidence Storage",
+      title: "Document Storage",
       description: "Secure storage for case files, evidence, and legal documentation",
-      color: "text-orange-600 dark:text-orange-400"
+      color: "text-red-600 dark:text-red-400",
+      href: "/documents"
+    },
+    {
+      icon: Shield,
+      title: "Audit Trail",
+      description: "Comprehensive logging of all system activities and user actions",
+      color: "text-cyan-600 dark:text-cyan-400",
+      href: "/audit"
     },
     {
       icon: Database,
-      title: "System Integration",
-      description: "DEX/CPCMS integration for automated data import/export and Access Database mapping",
-      color: "text-indigo-600 dark:text-indigo-400"
+      title: "System Integrations",
+      description: "DEX, CPCMS, and Access Database integration management",
+      color: "text-slate-600 dark:text-slate-400",
+      href: "/integrations"
+    },
+    {
+      icon: Phone,
+      title: "Twilio Configuration",
+      description: "Configure SMS integration, phone numbers, and message templates",
+      color: "text-teal-600 dark:text-teal-400",
+      href: "/twilio-settings"
     },
     {
       icon: Lock,
       title: "Security & Compliance",
-      description: "HIPAA/FERPA compliant with comprehensive audit trails and data retention policies",
-      color: "text-red-600 dark:text-red-400"
+      description: "Role-based access, HIPAA/FERPA settings, and data retention policies",
+      color: "text-rose-600 dark:text-rose-400",
+      href: "/security"
+    },
+    {
+      icon: Activity,
+      title: "Reports & Analytics",
+      description: "Comprehensive reporting dashboard with case statistics and performance metrics",
+      color: "text-emerald-600 dark:text-emerald-400",
+      href: "/reports"
     }
   ];
 
@@ -112,7 +162,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Core Features
+              Application Features
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               Comprehensive tools designed specifically for dependency court case management and communication
@@ -121,22 +171,22 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
-              <Card 
-                key={index} 
-                className="hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white dark:bg-gray-800"
-              >
-                <CardHeader>
-                  <div className={`w-12 h-12 rounded-lg bg-gray-50 dark:bg-gray-700 flex items-center justify-center mb-4`}>
-                    <feature.icon className={`w-6 h-6 ${feature.color}`} />
-                  </div>
-                  <CardTitle className="text-xl text-gray-900 dark:text-white">
-                    {feature.title}
-                  </CardTitle>
-                  <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    {feature.description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+              <Link key={index} href={feature.href}>
+                <Card className="hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white dark:bg-gray-800 h-full cursor-pointer group">
+                  <CardHeader>
+                    <div className={`w-12 h-12 rounded-lg bg-gray-50 dark:bg-gray-700 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                      <feature.icon className={`w-6 h-6 ${feature.color}`} />
+                    </div>
+                    <CardTitle className="text-xl text-gray-900 dark:text-white flex items-center justify-between">
+                      {feature.title}
+                      <ArrowRight className="w-5 h-5 text-gray-400 group-hover:translate-x-1 transition-transform" />
+                    </CardTitle>
+                    <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {feature.description}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
