@@ -1,67 +1,332 @@
 "use client";
 
-import Link from "next/link";
-import { Button } from "../components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
-import { Plus, Search } from "lucide-react";
+import { Users, MessageSquare, FileText, Shield, Clock, Database, Bell, Phone, Calendar, CheckCircle, Activity, Lock } from 'lucide-react';
 
 export default function Home() {
+  const features = [
+    {
+      icon: Users,
+      title: "Case Information Management",
+      description: "Comprehensive case tracking with docket numbers, hearing dates, and participant details",
+      color: "text-blue-600 dark:text-blue-400"
+    },
+    {
+      icon: Shield,
+      title: "Participant Role Management",
+      description: "Secure role-based access for judges, attorneys, social workers, and case managers",
+      color: "text-purple-600 dark:text-purple-400"
+    },
+    {
+      icon: MessageSquare,
+      title: "Communication Management",
+      description: "Automated SMS reminders and two-way messaging with parent contacts",
+      color: "text-green-600 dark:text-green-400"
+    },
+    {
+      icon: FileText,
+      title: "Document & Evidence Storage",
+      description: "Secure storage for case files, evidence, and legal documentation",
+      color: "text-orange-600 dark:text-orange-400"
+    },
+    {
+      icon: Database,
+      title: "System Integration",
+      description: "DEX/CPCMS integration for automated data import/export and Access Database mapping",
+      color: "text-indigo-600 dark:text-indigo-400"
+    },
+    {
+      icon: Lock,
+      title: "Security & Compliance",
+      description: "HIPAA/FERPA compliant with comprehensive audit trails and data retention policies",
+      color: "text-red-600 dark:text-red-400"
+    }
+  ];
+
+  const capabilities = [
+    {
+      icon: Phone,
+      title: "Twilio Integration",
+      description: "Enterprise-grade SMS delivery with delivery status tracking"
+    },
+    {
+      icon: Users,
+      title: "Parent Contact Entry",
+      description: "Capture names, phone numbers, and consent preferences"
+    },
+    {
+      icon: FileText,
+      title: "Case Linking",
+      description: "Associate contacts with docket numbers and hearing dates"
+    },
+    {
+      icon: Bell,
+      title: "Message Scheduling",
+      description: "Automated reminders 24 hours before hearings"
+    },
+    {
+      icon: MessageSquare,
+      title: "Incoming Message Handling",
+      description: "Route replies to queue with automatic case ID tagging"
+    },
+    {
+      icon: Activity,
+      title: "Audit Trail & Logging",
+      description: "Complete tracking of all sent/received messages with timestamps"
+    }
+  ];
+
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Welcome to Quantum Apps
+    <div className="bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-800">
+      {/* Hero Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-2xl mb-6 shadow-lg">
+            <MessageSquare className="w-10 h-10 text-white" />
+          </div>
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 text-balance">
+            Dependency Hearing SMS
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-            Your gateway to AI-Powered Enterprise Apps
+          <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-8 text-balance leading-relaxed">
+            Streamlined case management and automated SMS communication system for dependency court proceedings
           </p>
+          <div className="flex flex-wrap gap-4 justify-center items-center text-sm text-gray-600 dark:text-gray-400">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-green-600" />
+              <span>HIPAA Compliant</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-green-600" />
+              <span>FERPA Certified</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-green-600" />
+              <span>Secure & Auditable</span>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          <Card className="hover:shadow-lg transition-shadow bg-white dark:bg-gray-800 border-0 shadow-lg">
+      {/* Core Features Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800/50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Core Features
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Comprehensive tools designed specifically for dependency court case management and communication
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <Card 
+                key={index} 
+                className="hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white dark:bg-gray-800"
+              >
+                <CardHeader>
+                  <div className={`w-12 h-12 rounded-lg bg-gray-50 dark:bg-gray-700 flex items-center justify-center mb-4`}>
+                    <feature.icon className={`w-6 h-6 ${feature.color}`} />
+                  </div>
+                  <CardTitle className="text-xl text-gray-900 dark:text-white">
+                    {feature.title}
+                  </CardTitle>
+                  <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {feature.description}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* System Capabilities Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              System Capabilities
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Advanced features powered by Twilio integration and intelligent automation
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {capabilities.map((capability, index) => (
+              <div 
+                key={index}
+                className="flex gap-4 p-6 rounded-xl bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow"
+              >
+                <div className="flex-shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
+                    <capability.icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                    {capability.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {capability.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Compliance & Security Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 rounded-2xl mb-6">
+              <Shield className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Security & Compliance
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Built with the highest standards for legal and healthcare data protection
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <Card className="border-0 shadow-lg bg-white dark:bg-gray-800">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+                  <Lock className="w-5 h-5 text-blue-600" />
+                  Role-Based Access Control
+                </CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300">
+                  Granular permissions for viewing and editing sensitive case information based on user roles and responsibilities
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white dark:bg-gray-800">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+                  <Activity className="w-5 h-5 text-blue-600" />
+                  Complete Audit Trail
+                </CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300">
+                  Comprehensive logging of all changes, communications, and user actions for legal compliance and accountability
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white dark:bg-gray-800">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+                  <Database className="w-5 h-5 text-blue-600" />
+                  Data Retention Policies
+                </CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300">
+                  Automated data lifecycle management ensuring compliance with legal retention requirements
+                </CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white dark:bg-gray-800">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
+                  <FileText className="w-5 h-5 text-blue-600" />
+                  Legal Notices & Disclaimers
+                </CardTitle>
+                <CardDescription className="text-gray-600 dark:text-gray-300">
+                  Built-in legal notices and consent management for all communications and data processing
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Integration Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              System Integration
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Seamless connectivity with existing court management systems
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <Card className="border-0 shadow-lg bg-white dark:bg-gray-800 text-center">
+              <CardContent className="pt-6">
+                <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Database className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
+                </div>
+                <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">
+                  DEX / CPCMS Integration
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Automated data import and export with court management systems
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white dark:bg-gray-800 text-center">
+              <CardContent className="pt-6">
+                <div className="w-16 h-16 bg-green-50 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FileText className="w-8 h-8 text-green-600 dark:text-green-400" />
+                </div>
+                <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">
+                  Access Database Mapping
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Legacy system support with complete data migration tools
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-0 shadow-lg bg-white dark:bg-gray-800 text-center">
+              <CardContent className="pt-6">
+                <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Clock className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                </div>
+                <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">
+                  Real-Time Sync
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Automated workflow with instant updates across all systems
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Legal Notice */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-5xl mx-auto">
+          <Card className="border-0 shadow-md bg-white dark:bg-gray-800">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
-                <Plus className="w-5 h-5 text-blue-600" />
-                New Application
+              <CardTitle className="text-center text-gray-900 dark:text-white">
+                Legal Notice & Disclaimer
               </CardTitle>
-              <CardDescription className="text-gray-600 dark:text-gray-300">
-                Submit a new application for our quantum services
-              </CardDescription>
             </CardHeader>
-            <CardContent>
-              <Link href="/new-application">
-                <Button className="w-full" size="lg">
-                  <Plus className="w-4 h-4 mr-2" />
-                  New Application
-                </Button>
-              </Link>
+            <CardContent className="text-sm text-gray-600 dark:text-gray-300 space-y-3 leading-relaxed">
+              <p>
+                This system is designed for use by authorized court personnel only. All communications are subject to legal privilege and confidentiality requirements under applicable state and federal law.
+              </p>
+              <p>
+                By using this system, you acknowledge that all data is protected under HIPAA, FERPA, and other applicable privacy regulations. Unauthorized access, use, or disclosure of case information is strictly prohibited and may result in criminal prosecution.
+              </p>
+              <p>
+                All system activities are logged and monitored. Users are responsible for maintaining the confidentiality of their access credentials and must report any suspected security breaches immediately.
+              </p>
             </CardContent>
           </Card>
-
-          <Card className="hover:shadow-lg transition-shadow bg-white dark:bg-gray-800 border-0 shadow-lg">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-white">
-                <Search className="w-5 h-5 text-green-600" />
-                Track Application
-              </CardTitle>
-              <CardDescription className="text-gray-600 dark:text-gray-300">
-                Check the status of your submitted applications
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link href="/track-application">
-                <Button variant="outline" className="w-full" size="lg">
-                  <Search className="w-4 h-4 mr-2" />
-                  Track Application
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
